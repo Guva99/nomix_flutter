@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
+import 'package:nomix/features/detail_statistic_page/ui/page/detail_statistic_page.dart';
 import 'package:nomix/features/home_page/ui/page/main_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 

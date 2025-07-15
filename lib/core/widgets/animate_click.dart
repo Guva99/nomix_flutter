@@ -29,7 +29,7 @@ class _TapAnimatorState extends State<TapAnimator> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return ScaleTransition(
-      scale: Tween<double>(begin: 1.0, end: 0.95).animate(_controller),
+      scale: Tween<double>(begin: 1.0, end: 0.98).animate(_controller),
       child: Listener(
         onPointerDown: (_) => _controller.forward(),
         onPointerUp: (_) => _controller.reverse(),

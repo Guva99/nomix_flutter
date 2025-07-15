@@ -6,6 +6,13 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Nomix</string>
+	<key>NSLocalNetworkUsageDescription</key>
+    <string>Allow the debugger to connect over your local network.</string>
+    <key>NSBonjourServices</key>
+    <array>
+      <string>_dartVmService._tcp</string>
+      <string>_dartobservatory._tcp</string>
+    </array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

@@ -5,6 +5,6 @@ abstract class RoutePath {
   static const selectHousePath = 'selectHousePath';
   static const debugMenuPath = '/debugMenuPath';
   static const smartHouseControlPath = 'smartHouseControlPath';
-  static const detailPagePath = 'detailPagePath';
+  static const detailPageStatisticPath = 'detailPageStatisticPath';
 
  }

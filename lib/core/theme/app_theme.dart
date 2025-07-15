@@ -52,6 +52,10 @@ abstract class AppColors {
    static const Color primaryBlue = Color(0xFF3776F0);
   static const Color accentColor = Color(0xFF5A3B9E);
   static const Color primaryBlueLight = Color(0xFF709AEC);
+  static const Color orangeFood = Color(0xFFF7A963);
+  static const Color pinkAccent = Color(0xFFFC7AD7);
+  static const Color yellowAccent = Color(0xFFD8C32B);
+  static const Color green = Color(0xFF7DCB76);
 
 
   static const Gradient gradient = LinearGradient(

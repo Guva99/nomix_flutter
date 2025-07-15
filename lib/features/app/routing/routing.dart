@@ -11,6 +11,14 @@ class RoutesInit {
         path: RoutePath.initPagePath,
         name: RoutePath.initPagePath,
         builder: (context, state) => const MainPage(),
+        routes: [
+          GoRoute(
+            path: RoutePath.detailPageStatisticPath,
+            name: RoutePath.detailPageStatisticPath,
+            builder: (context, state) => const DetailStatisticPage(),
+
+          ),
+        ]
 
       ),
 

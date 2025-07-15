@@ -9,4 +9,11 @@ class ImageAssets {
   static const String statistic = 'assets/images/statistic.png';
   static const String techique = 'assets/images/techique.png';
 
+  static const String transports = 'assets/images/transports.png';
+  static const String other = 'assets/images/other.png';
+  static const String house = 'assets/images/house.png';
+  static const String health = 'assets/images/health.png';
+  static const String food = 'assets/images/food.png';
+  static const String cloth = 'assets/images/cloth.png';
+
 }

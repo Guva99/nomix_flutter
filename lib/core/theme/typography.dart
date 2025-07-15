@@ -7,11 +7,7 @@ abstract class AppTypography {
 
   static TextStyle _montserrat({FontWeight? fontWeight, double? fontSize, double? letterSpacing, double? height}) =>
       GoogleFonts.montserrat(fontWeight: fontWeight, fontSize: fontSize, letterSpacing: letterSpacing, height: height).copyWith(
-        fontFeatures: <FontFeature>[
-          const FontFeature.enable('lnum'),
-          const FontFeature.enable('pnum'),
-          const FontFeature.disable('liga'),
-        ],
+
       );
 
   ///_montserrat
