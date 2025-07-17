@@ -20,8 +20,7 @@ class MainPage extends StatelessWidget {
       title: 'NOMIX AI',
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: [
             TapAnimator(
               onTap: () {},
@@ -45,9 +44,11 @@ class MainPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            const SizedBox(
+              height: 20,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: SpendingChart(),
             ),
             ListTileContainerWidget(
@@ -57,11 +58,11 @@ class MainPage extends StatelessWidget {
               leadingPath: ImageAssets.statistic,
               title: 'Детальная статистика ',
             ),
-            ListTileContainerWidget(
+            const ListTileContainerWidget(
               leadingPath: ImageAssets.reciepts,
               title: 'Мои чеки',
             ),
-            ListTileContainerWidget(
+            const ListTileContainerWidget(
               leadingPath: ImageAssets.techique,
               title: 'Техническая поддержка',
             ),
