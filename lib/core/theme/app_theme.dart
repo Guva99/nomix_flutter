@@ -49,6 +49,7 @@ abstract class AppColors {
 
   static const Color black50 = Color(0xFF414049);
   static const Color gray = Color(0xFF7A8A98);
+  static const Color gray100 = Color(0xFFF4F4F4);
    static const Color primaryBlue = Color(0xFF3776F0);
   static const Color accentColor = Color(0xFF5A3B9E);
   static const Color primaryBlueLight = Color(0xFF709AEC);

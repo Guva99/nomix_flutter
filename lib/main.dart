@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
- import 'package:nomix/core/theme/app_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:nomix/core/internal/sl.dart';
+import 'package:nomix/core/theme/app_theme.dart';
+import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-Future<void> main() async{
+Future<void> main() async {
+  setUrlStrategy(const HashUrlStrategy());
+
   WidgetsFlutterBinding.ensureInitialized();
-   runApp(const MyApp());
+  configureDependencies();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -16,15 +25,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _router = RoutesInit();
+  final GetIt locator = GetIt.instance;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-
-      theme: Themes.lightTheme,
-      routerConfig: _router.router,
+    return MultiBlocProvider(
+      providers: buildListProviders(locator: locator),
+      child: MaterialApp.router(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: Themes.lightTheme,
+        routerConfig: _router.router,
+      ),
     );
   }
 }

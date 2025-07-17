@@ -5,9 +5,11 @@ import 'package:nomix/core/theme/typography.dart';
 class ColumnTextWidget extends StatelessWidget {
   final String title;
   final String description;
+  final CrossAxisAlignment crossAxisAlignment;
 
   const ColumnTextWidget({
     required this.title,
+    required this.crossAxisAlignment,
     required this.description,
     super.key,
   });
@@ -15,7 +17,7 @@ class ColumnTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment ,
       children: [
         Text(
           title,

@@ -13,6 +13,8 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/web.dart' as _i120;
 
+import '../../features/detail_statistic_page/ui/state/detail_statistic_bloc.dart'
+    as _i829;
 import '../database/data/repositories/hivey.dart' as _i407;
 import 'logger_di_module.dart' as _i1018;
 import 'sl.dart' as _i581;
@@ -33,6 +35,8 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i361.Dio>(() => registerModule.dio);
   gh.lazySingleton<_i407.HiveApp>(() => registerModule.hivey());
   gh.lazySingleton<_i120.Logger>(() => loggerDiModule.logger);
+  gh.lazySingleton<_i829.DetailStatisticBloc>(
+      () => _i829.DetailStatisticBloc());
   return getIt;
 }
 
