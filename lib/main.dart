@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nomix/core/internal/sl.dart';
 import 'package:nomix/core/theme/app_theme.dart';
+import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
 

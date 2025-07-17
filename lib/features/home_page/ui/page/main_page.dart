@@ -23,7 +23,9 @@ class MainPage extends StatelessWidget {
         child: ListView(
           children: [
             TapAnimator(
-              onTap: () {},
+              onTap: () {
+                context.goNamed(RoutePath.debugMenuPath);
+              },
               child: Container(
                 height: 130,
                 decoration: BoxDecoration(borderRadius: AppCorners.radius10, gradient: AppColors.gradient),
