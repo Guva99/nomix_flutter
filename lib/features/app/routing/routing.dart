@@ -6,21 +6,24 @@ class RoutesInit {
   final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: RoutePath.initPagePath,
+    redirect: (context, state) {
+      if (state.uri.queryParameters.containsKey('tgWebAppData')) {
+        return RoutePath.initPagePath;
+      }
+      return null;
+    },
     routes: <RouteBase>[
       GoRoute(
-        path: RoutePath.initPagePath,
-        name: RoutePath.initPagePath,
-        builder: (context, state) => const MainPage(),
-        routes: [
-          GoRoute(
-            path: RoutePath.detailPageStatisticPath,
-            name: RoutePath.detailPageStatisticPath,
-            builder: (context, state) => const DetailStatisticPage(),
-
-          ),
-        ]
-
-      ),
+          path: RoutePath.initPagePath,
+          name: RoutePath.initPagePath,
+          builder: (context, state) => const MainPage(),
+          routes: [
+            GoRoute(
+              path: RoutePath.detailPageStatisticPath,
+              name: RoutePath.detailPageStatisticPath,
+              builder: (context, state) => const DetailStatisticPage(),
+            ),
+          ]),
 
       // GoRoute(
       //   path: RoutePath.debugMenuPath,

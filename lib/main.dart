@@ -5,10 +5,9 @@ import 'package:nomix/core/internal/sl.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 Future<void> main() async {
-  setUrlStrategy(const HashUrlStrategy());
+
 
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
