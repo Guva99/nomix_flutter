@@ -38,6 +38,7 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         centerTitle: true,leadingWidth: 30,
+        title: Text('V1.0.0+1',style: AppTypography.font14Regular.copyWith(color: AppColors.white),),
         leading: TapAnimator(
           onTap: (){
             context.pushNamed(RoutePath.initPagePath)
