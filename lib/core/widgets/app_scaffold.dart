@@ -10,7 +10,8 @@ import 'package:nomix/core/widgets/animate_click.dart';
 class AppScaffold extends StatelessWidget {
   final String title;
   final Widget body;
-  const AppScaffold({super.key, required this.title, required this.body});
+  final Widget? leadingWidget;
+  const AppScaffold({super.key, required this.title,this.leadingWidget, required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class AppScaffold extends StatelessWidget {
               minWidth: kToolbarHeight,
               minHeight: kToolbarHeight,
             ),
-            child: TapAnimator(
+            child:leadingWidget ?? TapAnimator(
               onTap: () {},
               child: SvgPicture.asset(
                 VectorAssets.notif,

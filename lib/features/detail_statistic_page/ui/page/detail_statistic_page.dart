@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nomix/core/enums/filtered_date_enum.dart';
+import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/app_scaffold.dart';
 import 'package:nomix/features/detail_statistic_page/domain/entity.dart';
 import 'package:nomix/features/detail_statistic_page/ui/state/detail_statistic_bloc.dart';
@@ -28,6 +31,12 @@ class _DetailStatisticPageState extends State<DetailStatisticPage> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      leadingWidget: TapAnimator(
+        onTap: () {
+          context.pop();
+        },
+        child: Icon(Icons.arrow_back_ios_new_outlined),
+      ),
       title: 'Статистика',
       body: BlocBuilder<DetailStatisticBloc, DetailStatisticState>(
         builder: (context, state) {
