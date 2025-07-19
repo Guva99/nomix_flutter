@@ -10,8 +10,7 @@ class StatsCard extends StatefulWidget {
 }
 
 class _StatsCardState extends State<StatsCard> {
-  // Полный список месяцев
-  final List<String> _months = [
+   final List<String> _months = [
     'Январь',
     'Февраль',
     'Март',
@@ -27,8 +26,7 @@ class _StatsCardState extends State<StatsCard> {
   ];
   String _selectedMonth = 'Май';
 
-  // Ваши категории + цвета
-  final Map<String, Color> _categoryColors = {
+   final Map<String, Color> _categoryColors = {
     'Еда и напитки': Colors.orange,
     'Одежда': Colors.purple,
     'Транспорт': Colors.black87,
@@ -37,8 +35,7 @@ class _StatsCardState extends State<StatsCard> {
     'Прочее': Colors.green,
   };
 
-  // Для каждого месяца — список из 6 рандомных значений
-  late final Map<String, List<double>> _valuesByMonth;
+   late final Map<String, List<double>> _valuesByMonth;
 
   final Random _rnd = Random();
 

@@ -37,13 +37,20 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
       backgroundColor: AppColors.black50,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.dark,
-        centerTitle: true,leadingWidth: 30,
-        title: Text('V1.0.0+4',style: AppTypography.font14Regular.copyWith(color: AppColors.white),),
+        centerTitle: true,
+        leadingWidth: 30,
+        title: Text(
+          'V1.0.0+4',
+          style: AppTypography.font14Regular.copyWith(color: AppColors.white),
+        ),
         leading: TapAnimator(
-          onTap: (){
-            context.pushNamed(RoutePath.initPagePath)
-;          },
-            child: Icon(Icons.keyboard_backspace_rounded,size: 50,)),
+            onTap: () {
+              context.pushNamed(RoutePath.initPagePath);
+            },
+            child: const Icon(
+              Icons.keyboard_backspace_rounded,
+              size: 50,
+            )),
         toolbarHeight: 40.0,
         backgroundColor: AppColors.black50,
         bottom: TabBar(
@@ -71,15 +78,15 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Center(
-            child:  Text('data'),
+          const Center(
+            child: Text('data'),
           ),
           const Center(child: NetworkLogs()),
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.separated(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: LocalLoggerList.loggerModelStringList.length,
                 itemBuilder: (context, index) {
                   final data =
@@ -100,7 +107,7 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
+                  return const Divider();
                 },
               ),
             ),
@@ -134,7 +141,7 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
             text: '$title:    ',
             style: AppTypography.font14Regular.copyWith(
               fontWeight: FontWeight.bold,
-            ), // стиль заголовка жирным шрифтом
+            ),
           ),
           TextSpan(text: value),
         ],
