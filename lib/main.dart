@@ -6,16 +6,16 @@ import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
-import 'package:telegram_web_app/telegram_web_app.dart' as tg;
+// import 'package:telegram_web_app/telegram_web_app.dart' as tg;
 
-final tgWebApp = tg.TelegramWebApp.instance;
+// final tgWebApp = tg.TelegramWebApp.instance;
 
 Future<void> main() async {
-  final initData = tgWebApp.initDataUnsafe;
+  // final initData = tgWebApp.initDataUnsafe;
   // можно сразу дернуть API бэка, передав initData
-  GetItUtils.logger.w('АВТОРИЗАЦИЯ: ${initData?.authDate}');
-  GetItUtils.logger.w('АВТОРИЗАЦИЯusername: ${initData?.chat?.username}');
-  GetItUtils.logger.w('АВТОРИЗАЦИЯinitData: ${initData}');
+  // GetItUtils.logger.w('АВТОРИЗАЦИЯ: ${initData?.authDate}');
+  // GetItUtils.logger.w('АВТОРИЗАЦИЯusername: ${initData?.chat?.username}');
+  // GetItUtils.logger.w('АВТОРИЗАЦИЯinitData: ${initData}');
    // try {
   //   if (TelegramWebApp.instance.isSupported) {
   //     TelegramWebApp.instance.ready();
