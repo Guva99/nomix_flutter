@@ -9,21 +9,14 @@ class RoutesInit {
     initialLocation: RoutePath.initPagePath,
     redirect: (context, state) {
       GetItUtils.logger.w('REDRIRCT: ${state.uri.queryParameters}');
-      GetItUtils.logger.w('REDRIRCT: ${state.uri}');
+      GetItUtils.logger.w('state.uri: ${state.uri}');
       if (state.uri.queryParameters.containsKey('tgWebAppData')) {
         return RoutePath.initPagePath;
       }
       return null;
     },
     routes: <RouteBase>[
-      GoRoute(
-        path: '*',
-        builder: (context, state) => Scaffold(
-          body: Center(
-            child: Text('ERROROROR: ${state.fullPath} // $state'),
-          ),
-        ),
-      ),
+
       GoRoute(
           path: RoutePath.initPagePath,
           name: RoutePath.initPagePath,
@@ -39,6 +32,14 @@ class RoutesInit {
         path: RoutePath.debugMenuPath,
         name: RoutePath.debugMenuPath,
         builder: (context, state) => DebugMenu(backRoutePath: state.extra.toString()),
+      ),
+      GoRoute(
+        path: '*',
+        builder: (context, state) => Scaffold(
+          body: Center(
+            child: Text('ERROROROR: ${state.fullPath} // $state'),
+          ),
+        ),
       ),
     ],
   );
