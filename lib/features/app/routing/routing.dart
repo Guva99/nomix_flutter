@@ -9,8 +9,10 @@ class RoutesInit {
     initialLocation: RoutePath.initPagePath,
     redirect: (context, state) {
       GetItUtils.logger.w('REDRIRCT: ${state.uri.queryParameters}');
-      GetItUtils.logger.w('state.uri: ${state.uri}');
-      if (state.uri.queryParameters.containsKey('tgWebAppData')) {
+      GetItUtils.logger.w('state.ur: ${state.uri}');
+      final uriStr = state.uri.toString();
+      if (uriStr.contains('tgWebAppData=')) {
+        // нашли
         return RoutePath.initPagePath;
       }
       return null;
