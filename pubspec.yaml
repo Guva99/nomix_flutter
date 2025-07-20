@@ -41,6 +41,7 @@ dependencies:
   # Routing
   go_router: ^14.8.1
   telegram_web_app: ^0.3.3
+  liquid_glass_renderer:
   #  go_router: ^13.2.0
 
   # State Management
