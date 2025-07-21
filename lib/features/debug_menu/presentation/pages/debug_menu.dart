@@ -40,7 +40,7 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
         centerTitle: true,
         leadingWidth: 30,
         title: Text(
-          'V1.0.0+4',
+          'V1.0.0+5',
           style: AppTypography.font14Regular.copyWith(color: AppColors.white),
         ),
         leading: TapAnimator(

@@ -6,7 +6,7 @@ import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
 import 'package:nomix/features/debug_menu/presentation/pages/debug_menu.dart';
 import 'package:nomix/features/detail_statistic_page/ui/page/detail_statistic_page.dart';
-import 'package:nomix/features/home_page/ui/page/main_page.dart';
+import 'package:nomix/features/home_page/ui/page/home_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;

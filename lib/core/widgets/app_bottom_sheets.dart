@@ -5,7 +5,6 @@ import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
 import 'package:nomix/core/widgets/dismiss_keyboard_tapper.dart';
 
-
 class AppBottomSheet extends StatelessWidget {
   const AppBottomSheet({
     required this.child,
@@ -79,39 +78,51 @@ Future<T?> showCustomSheet<T>({
     isDismissible: isDismissible,
     enableDrag: enableDrag,
     useRootNavigator: useRootNavigator,
-    builder:
-        (BuildContext context) => SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                if (titleWidget != null) titleWidget,
-                if (title != null && title.isNotEmpty == true)
-                  Align(
-                    alignment: titleAlign,
-                    child: Text(
-                      title,
-                      style: AppTypography.font18Regular.copyWith(
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.primaryBlue,
-                      ),
-                    ),
-                  ),
-                Padding(
-                  padding: EdgeInsets.only(top: (title != null && title.isNotEmpty == true) ? 16 : 0, bottom: 0),
-                  child: builder(context),
-                ),
-                const SizedBox(height: 15),
-              ],
-            ),
-          ),
+    builder: (BuildContext context) => SingleChildScrollView(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
         ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (titleWidget != null) titleWidget,
+            if (title != null && title.isNotEmpty == true)
+              Align(
+                alignment: titleAlign,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        title,
+                        style: AppTypography.font18Regular.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.black,
+                        ),
+                      ),
+                      const Spacer(),
+                      const CircleAvatar(
+                        radius: 15,
+                        backgroundColor: AppColors.white,
+                        child: Icon(Icons.close_outlined, color: AppColors.black,),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            Padding(
+              padding: EdgeInsets.only(top: (title != null && title.isNotEmpty == true) ? 16 : 0, bottom: 0),
+              child: builder(context),
+            ),
+            const SizedBox(height: 15),
+          ],
+        ),
+      ),
+    ),
   );
 }
 

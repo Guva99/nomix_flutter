@@ -9,7 +9,7 @@ import 'package:nomix/features/detail_statistic_page/domain/entity.dart';
 import 'package:nomix/features/detail_statistic_page/ui/state/detail_statistic_bloc.dart';
 import 'package:nomix/features/detail_statistic_page/ui/widgets/category_element_widget.dart';
 import 'package:nomix/features/detail_statistic_page/ui/widgets/stats_card_widget.dart';
-import 'package:nomix/features/home_page/ui/page/main_page.dart';
+import 'package:nomix/features/home_page/ui/page/home_page.dart';
 
 class DetailStatisticPage extends StatefulWidget {
   const DetailStatisticPage({super.key});
@@ -63,20 +63,18 @@ class _DetailStatisticPageState extends State<DetailStatisticPage> {
                   padding: const EdgeInsets.all(10.0),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                        final cat    = cats[index];
+                      (context, index) {
+                        final cat = cats[index];
                         final filter = filters[cat.id]!;
 
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: CategoryElementWidget(
-                            data:           cat,
+                            data: cat,
                             scrollController: _scrollController,
-                            selectedFilter:   filter,
+                            selectedFilter: filter,
                             onFilterChanged: (newFilter) {
-                              context
-                                  .read<DetailStatisticBloc>()
-                                  .add(FilterCategoryChanged(cat.id, newFilter));
+                              context.read<DetailStatisticBloc>().add(FilterCategoryChanged(cat.id, newFilter));
                             },
                           ),
                         );
@@ -96,4 +94,3 @@ class _DetailStatisticPageState extends State<DetailStatisticPage> {
     );
   }
 }
-

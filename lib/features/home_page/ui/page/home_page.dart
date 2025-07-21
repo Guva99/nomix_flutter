@@ -6,9 +6,11 @@ import 'package:nomix/core/theme/app_corners.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
+import 'package:nomix/core/widgets/app_bottom_sheets.dart';
 import 'package:nomix/core/widgets/app_scaffold.dart';
 import 'package:nomix/core/widgets/list_title_container_widget.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
+import 'package:nomix/features/home_page/ui/widgets/receipts_widget.dart';
 import 'package:nomix/features/home_page/ui/widgets/spending_chart_widget.dart';
 
 class MainPage extends StatelessWidget {
@@ -60,7 +62,19 @@ class MainPage extends StatelessWidget {
               leadingPath: ImageAssets.statistic,
               title: 'Детальная статистика ',
             ),
-            const ListTileContainerWidget(
+              ListTileContainerWidget(
+              onTap: (){
+                showCustomSheet(
+                  context: context,
+                  title: 'Мои чеки',
+                 titleAlign: Alignment.topLeft,
+                  bgColor: AppColors.bgWhite,
+                  builder: (_) =>
+                      SizedBox(
+                          height: 600,
+                          child: ReceiptsWidget()),
+                );
+              },
               leadingPath: ImageAssets.reciepts,
               title: 'Мои чеки',
             ),

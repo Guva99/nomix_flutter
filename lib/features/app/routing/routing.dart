@@ -31,6 +31,11 @@ class RoutesInit {
             ),
           ]),
       GoRoute(
+        path: RoutePath.receiptsPath,
+        name: RoutePath.receiptsPath,
+        builder: (context, state) => DebugMenu(backRoutePath: state.extra.toString()),
+      ),
+      GoRoute(
         path: RoutePath.debugMenuPath,
         name: RoutePath.debugMenuPath,
         builder: (context, state) => DebugMenu(backRoutePath: state.extra.toString()),

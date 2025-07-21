@@ -5,6 +5,7 @@ import 'package:nomix/core/enums/filtered_date_enum.dart';
 import 'package:nomix/core/theme/app_corners.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
+import 'package:nomix/core/utils/buisness_utils.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/app_bottom_sheets.dart';
 import 'package:nomix/core/widgets/collapse_animated.dart';
@@ -64,6 +65,7 @@ class _CategoryElementWidgetState extends State<CategoryElementWidget> {
     super.initState();
     _currentFilter = widget.selectedFilter;
   }
+
   @override
   Widget build(BuildContext context) {
     final detailStatisticBloc = context.read<DetailStatisticBloc>();
@@ -190,7 +192,7 @@ class _CategoryElementWidgetState extends State<CategoryElementWidget> {
                                                 description: p.weight,
                                                 crossAxisAlignment: CrossAxisAlignment.start),
                                             ColumnTextWidget(title: p.price,
-                                                description: _formatPeriod(_currentFilter, p.data),
+                                                description: BusinessUtils.formatPeriod(_currentFilter, p.data),
                                                 crossAxisAlignment: CrossAxisAlignment.end),
                                           ],
                                         ),
@@ -214,24 +216,7 @@ class _CategoryElementWidgetState extends State<CategoryElementWidget> {
     );
   }
 }// helper внутри State:
-String _formatPeriod(FilteredDateEnum filter, String iso) {
-  final now = DateTime.now();
-  final weekAgo  = now.subtract(Duration(days: 7));
-  final monthAgo = now.subtract(Duration(days: 30));
 
-  final dfDay   = DateFormat('dd.MM.yy');
-  final dfShort = DateFormat('dd.MM');
-
-  switch (filter) {
-    case FilteredDateEnum.Day:
-    // выводим именно день из iso (или просто today)
-      return dfDay.format(DateTime.parse(iso));
-    case FilteredDateEnum.Week:
-      return '${dfShort.format(weekAgo)} - ${dfShort.format(now)}';
-    case FilteredDateEnum.Month:
-      return '${dfShort.format(monthAgo)} - ${dfShort.format(now)}';
-  }
-}
 
 
 class AnimatedSegmentedControl extends StatefulWidget {

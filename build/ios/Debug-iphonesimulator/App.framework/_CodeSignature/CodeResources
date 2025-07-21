@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		UuUhnZ6hTFUkNoIaD65j2bBNy04=
+		zS+Vjh5mGOm6jIYSFp7Qg8ealoY=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		45C56RA8e0dIIdnCJWRBZPHFfXA=
+		1ozGDr0dV29pbyFbq5s37h2yz5o=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		H66aY3TvNj1l/T76lWVqDHGcx2w=
+		2Am35eU1PEk/VjHK1St2lHaFPZs=
 		</data>
 		<key>flutter_assets/assets/images/cloth.png</key>
 		<data>
@@ -82,11 +82,19 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		czmntU+Wav5FNc9in0bzXJ+mQX8=
+		fni3S2NFTzAaqxiFXkzpMPnduM8=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
 		Bvk+P1ykE1PGRdktwgwDyz6AOqM=
+		</data>
+		<key>flutter_assets/packages/liquid_glass_renderer/lib/assets/shaders/displacement.frag</key>
+		<data>
+		7j0a8NibQ2FJ82VakihcsMq74Xs=
+		</data>
+		<key>flutter_assets/packages/liquid_glass_renderer/lib/assets/shaders/shapes.frag</key>
+		<data>
+		bzSxgM4mIBb8jBnT/7Crv0qeIYg=
 		</data>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -103,14 +111,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ydngVnnjmaohRVi6uHxnH1QgyzpVOPthyFIljw5UVS8=
+			mmnqMCBsREJX97Lg6LPUOX//m2KepVKki6Z1p+VmweQ=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K6oN8MaxALLNUD4msDF73jlt8a0Z8fQ8MW9mHzCRje0=
+			g51kytbg4qut0G7YeEmMS/dOJcwtbUkZ116jPginrbU=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -124,7 +132,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zUtLY5i0Lb+505svIuGvnwmlg4ZwpXPKDsbAgNzxlFE=
+			EzFxuuSA7GfS88Mh/wV5J+TQuPotbfbksFt4BpXuVaA=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/cloth.png</key>
@@ -229,7 +237,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5NJcr/wAKUXhe8hkoLKMThNCFSiNoTP3lvRfB37GqgI=
+			XNDG3Q7AWN4/k3JmjY6GlGAkiVHO7fCcitNMU2Mn42k=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -237,6 +245,20 @@
 			<key>hash2</key>
 			<data>
 			Z8RP6Rg7AC553ef2l34piGYcmj5KPF/OloeH79vtgjw=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/liquid_glass_renderer/lib/assets/shaders/displacement.frag</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+oOzYWGELBClPyjdXTmuX5NdMrU0gv0MX+cX/uA5gDI=
+			</data>
+		</dict>
+		<key>flutter_assets/packages/liquid_glass_renderer/lib/assets/shaders/shapes.frag</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			V8uPm5fcuFEXESmtOtuzXZFztXrbiJJOx0sOXLDYKp0=
 			</data>
 		</dict>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
