@@ -114,7 +114,7 @@ class _SpendingChartState extends State<SpendingChart> {
     );
 
     return SizedBox(
-      height: 230,
+      height: 240,
       child: LineChart(LineChartData(
         minX: 0,
         maxX: (_points.length - 1).toDouble(),
@@ -125,12 +125,10 @@ class _SpendingChartState extends State<SpendingChart> {
             sideTitles: SideTitles(
               showTitles: true,
               interval: 1,
-              reservedSize: 30,
+              reservedSize: 40,
               getTitlesWidget: (value, meta) {
                 final idx = value.toInt();
-                if (idx < 0 || idx >= _labels.length) {
-                  return const SizedBox();
-                }
+                if (idx < 0 || idx >= _labels.length) return const SizedBox();
                 switch (_selected) {
                   case TimeFrameEnum.Day:
                     if (idx % 3 != 0) return const SizedBox();
@@ -144,21 +142,14 @@ class _SpendingChartState extends State<SpendingChart> {
                     }
                     break;
                   case TimeFrameEnum.Year:
-                    // печатаем месяц на первой дате квартала (1 янв, 1 апр, 1 июл, 1 окт)
                     final date = _dates[idx];
-                    // если это первый день квартала
                     if (date.day == 1 && (date.month - 1) % 3 == 0) {
-                      // массив ваших русских месяцев
-                      const rusMonths = ['Янв', 'Апр', 'Июл', 'Окт'];
-                      final qIdx = (date.month - 1) ~/ 3;
-                      return textWidget(rusMonths[qIdx]);
+                      const rus = ['Янв', 'Апр', 'Июл', 'Окт'];
+                      return textWidget(rus[(date.month - 1) ~/ 3]);
                     }
                     return const SizedBox();
                 }
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: textWidget(_labels[idx]),
-                );
+                return textWidget(_labels[idx]);
               },
             ),
           ),
@@ -194,12 +185,10 @@ class _SpendingChartState extends State<SpendingChart> {
               }).toList();
             },
           ),
-          getTouchedSpotIndicator: (bar, spots) => spots.map((idx) {
+          getTouchedSpotIndicator: (bar, spots) => spots.map((spot) {
             return TouchedSpotIndicatorData(
               FlLine(color: Colors.white, strokeWidth: 1, dashArray: [4, 4]),
-              FlDotData(
-                show: true,
-              ),
+              FlDotData(show: true),
             );
           }).toList(),
         ),
@@ -209,7 +198,7 @@ class _SpendingChartState extends State<SpendingChart> {
 
   Widget textWidget(String idx) {
     return Padding(
-      padding: const EdgeInsets.only(top: 4.0),
+      padding: const EdgeInsets.only(top: 20.0,left: 35,right: 25,),
       child: Text(idx, style: AppTypography.font12Regular),
     );
   }

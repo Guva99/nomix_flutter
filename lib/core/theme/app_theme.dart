@@ -4,11 +4,12 @@ import 'package:nomix/core/theme/typography.dart';
 
 class Themes {
   static ThemeData get lightTheme => ThemeData(
-    brightness: Brightness.light,
+    // brightness: Brightness.light,
     fontFamily: 'Raleway',
+
     scaffoldBackgroundColor: AppColors.bgWhite,
     primaryColor: AppColors.black,
-    colorScheme: const ColorScheme.light(primary: AppColors.black),
+    colorScheme: const ColorScheme.light(primary: AppColors.bgWhite),
     textSelectionTheme: const TextSelectionThemeData(cursorColor: AppColors.white),
     canvasColor: AppColors.white,
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -42,7 +43,7 @@ class Themes {
 
 abstract class AppColors {
   static const Color white = Color(0xFFFFFFFF);
-  static const Color bgWhite = Color(0xFFF7FAFE);
+  static const Color bgWhite = Color(0xF7FFFFFF);
 
   static const Color black = Color(0xFF141414);
   static const Color red = Color(0xFFFF4820);

@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
+import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/dismiss_keyboard_tapper.dart';
 
 class AppBottomSheet extends StatelessWidget {
@@ -72,7 +74,7 @@ Future<T?> showCustomSheet<T>({
   Alignment titleAlign = Alignment.center,
 }) async {
   return _showBaseSheet<T>(
-    color: AppColors.white,
+    color: AppColors.primaryBlueLight,
     context: context,
     padding: padding,
     isDismissible: isDismissible,
@@ -105,11 +107,18 @@ Future<T?> showCustomSheet<T>({
                         ),
                       ),
                       const Spacer(),
-                      const CircleAvatar(
-                        radius: 15,
-                        backgroundColor: AppColors.white,
-                        child: Icon(Icons.close_outlined, color: AppColors.black,),
-                      )
+                      TapAnimator(
+                        onTap: () {
+                          context.pop();
+                        },
+                        child: CircleAvatar(
+                            radius: 15,
+                            backgroundColor: AppColors.white,
+                            child: Icon(
+                              Icons.close_outlined,
+                              color: AppColors.black,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -143,7 +152,7 @@ Future<T?> _showBaseSheet<T>({
     useRootNavigator: useRootNavigator,
     builder: (BuildContext bottomSheetContext) {
       return BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: DismissKeyboardTapper(
           child: AppBottomSheet(
             color: color,

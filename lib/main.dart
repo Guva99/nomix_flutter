@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -6,36 +7,45 @@ import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
-// import 'package:telegram_web_app/telegram_web_app.dart' as tg;
-
-// final tgWebApp = tg.TelegramWebApp.instance;
+import 'package:talker_flutter/talker_flutter.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
+// if (Platform.isIos || Platform.isAndroid) 'package:telegram_web_app/telegram_web_app.dart'
 
 Future<void> main() async {
-  // final initData = tgWebApp.initDataUnsafe;
-  // можно сразу дернуть API бэка, передав initData
-  // GetItUtils.logger.w('АВТОРИЗАЦИЯ: ${initData?.authDate}');
-  // GetItUtils.logger.w('АВТОРИЗАЦИЯusername: ${initData?.chat?.username}');
-  // GetItUtils.logger.w('АВТОРИЗАЦИЯinitData: ${initData}');
-   // try {
-  //   if (TelegramWebApp.instance.isSupported) {
-  //     TelegramWebApp.instance.ready();
-  //     Future.delayed(const Duration(seconds: 1), TelegramWebApp.instance.expand);
-  //   }
-  // } catch (e) {
-  //   print("Error happened in Flutter while loading Telegram $e");
-  //   // add delay for 'Telegram seldom not loading' bug
-  //   await Future.delayed(const Duration(milliseconds: 200));
-  //   main();
-  //   return;
-  // }
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
+
+  try {
+    if (TelegramWebApp.instance.isSupported) {
+      final webApp = TelegramWebApp.instance;
+
+      webApp.ready();
+      webApp.disableVerticalSwipes();
+      webApp.expand();
+    }
+  } catch (e) {
+    print("Error happened in Flutter while loading Telegram $e");
+    // add delay for 'Telegram seldom not loading' bug
+    await Future.delayed(const Duration(milliseconds: 200));
+    main();
+    return;
+  }
 
   FlutterError.onError = (details) {
     print("Flutter error happened: $details");
   };
+  FlutterError.onError = (details) {
+    print("Flutter error happened: $details");
+  };
 
-
-  WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  final talker = TalkerFlutter.init(
+    settings: TalkerSettings(
+      colors: {
+        // TalkerLogType.verbose: AnsiPen()..yellow(),
+      },
+    ),
+  );
+  getIt.registerSingleton<Talker>(talker);
 
   runApp(const MyApp());
 }
@@ -50,6 +60,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _router = RoutesInit();
   final GetIt locator = GetIt.instance;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

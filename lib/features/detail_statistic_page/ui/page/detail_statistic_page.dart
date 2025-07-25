@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nomix/core/enums/filtered_date_enum.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/app_scaffold.dart';
+import 'package:nomix/features/app/routing/route_path.dart';
 import 'package:nomix/features/detail_statistic_page/domain/entity.dart';
 import 'package:nomix/features/detail_statistic_page/ui/state/detail_statistic_bloc.dart';
 import 'package:nomix/features/detail_statistic_page/ui/widgets/category_element_widget.dart';
@@ -33,7 +34,7 @@ class _DetailStatisticPageState extends State<DetailStatisticPage> {
     return AppScaffold(
       leadingWidget: TapAnimator(
         onTap: () {
-          context.pop();
+          context.pushNamed(RoutePath.mainPage);
         },
         child: Icon(Icons.arrow_back_ios_new_outlined),
       ),

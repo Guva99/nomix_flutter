@@ -1,5 +1,5 @@
 // Copyright (c) 2025, Renan Araujo
-// Use of this source code is governed by a MPL-2.0 license that can be
+// Use of this data_source code is governed by a MPL-2.0 license that can be
 // found in the LICENSE file.
 
 #version 460 core

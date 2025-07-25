@@ -7,7 +7,12 @@ abstract class BusinessUtils {
 
 
   ///Static AppVersion
-  static const appVersion = '0.1.0';
+  static const appVersion = 'V1.0.0+11';
+
+
+
+
+
 
  static String formatPeriod(FilteredDateEnum filter, String iso) {
     final now = DateTime.now();

@@ -5,6 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nomix/core/database/data/repositories/hivey.dart';
 import 'package:nomix/core/internal/sl.config.dart';
+import 'package:nomix/features/home_page/data/data_source/api/home_page_api.dart';
+import 'package:nomix/features/home_page/data/data_source/services/home_page_api_service.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -23,10 +25,11 @@ abstract class RegisterModule {
       BaseOptions(
         // baseUrl: 'https://wisecity.systems/api/execute/',
         // baseUrl: 'https://dev.wisecity.systems/api/execute/',
-        baseUrl:  '',
+        baseUrl:  'https://mixfom2025.fvds.ru/',
         connectTimeout: const Duration(milliseconds: 35000),
       ),
     );
+
     // dio.interceptors.add(
     //   RefreshTokenInterceptor(
     //     token: _token,
@@ -37,6 +40,19 @@ abstract class RegisterModule {
     //     },
     //   ),
     // );
+    dio.interceptors.add(
+      TalkerDioLogger(
+        talker: getIt<Talker>(),
+        settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseHeaders: true,
+          printResponseMessage: true,
+          printRequestData: true,
+          printResponseData: true,
+          printErrorData: true,
+        ),
+      ),
+    );
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
@@ -67,8 +83,8 @@ abstract class RegisterModule {
     return HiveApp();
   }
 
-  // @lazySingleton
-  // SmartHouseApi generalNewsApi() => SmartHouseNetworkService(dio);
+  @lazySingleton
+  HomePageApi generalNewsApi() => HomePageApiService(dio);
 }
 
 //

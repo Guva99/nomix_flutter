@@ -10,8 +10,14 @@ abstract class AppTypography {
 
       );
 
+  static TextStyle rubik({FontWeight? fontWeight, double? fontSize, double? letterSpacing, double? height}) =>
+      GoogleFonts.rubik(fontWeight: fontWeight, fontSize: fontSize, letterSpacing: letterSpacing, height: height).copyWith(
+
+      );
+
   ///_montserrat
   static TextStyle get font8Regular => _montserrat(fontSize: 8);
+  static TextStyle get rubik40 => rubik(fontSize: 50);
   static TextStyle get font10Regular => _montserrat(fontSize: 10);
   static TextStyle get font12Regular => _montserrat(fontSize: 12);
   static TextStyle get font13Regular => _montserrat(fontSize: 13);

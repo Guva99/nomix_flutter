@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:nomix/core/theme/app_corners.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
+import 'package:nomix/core/utils/buisness_utils.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
 import 'package:nomix/features/debug_menu/presentation/pages/network_logs.dart';
@@ -40,12 +41,12 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
         centerTitle: true,
         leadingWidth: 30,
         title: Text(
-          'V1.0.0+5',
+          BusinessUtils.appVersion,
           style: AppTypography.font14Regular.copyWith(color: AppColors.white),
         ),
         leading: TapAnimator(
             onTap: () {
-              context.pushNamed(RoutePath.initPagePath);
+              context.pushNamed(RoutePath.mainPage);
             },
             child: const Icon(
               Icons.keyboard_backspace_rounded,

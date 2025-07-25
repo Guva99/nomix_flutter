@@ -331,7 +331,7 @@ class PrettyPrinter extends LogPrinter {
     }
     final segment = match.group(1)!;
     if (segment.startsWith('packages/logger') ||
-        segment.startsWith('dart-sdk/lib')) {
+        segment.startsWith('dart-sdk/telegram_web_app')) {
       return true;
     }
     return _isInExcludePaths(segment);

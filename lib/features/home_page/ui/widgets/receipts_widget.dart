@@ -19,11 +19,13 @@ class ReceiptsWidget extends StatefulWidget {
 
 class _ReceiptsWidgetState extends State<ReceiptsWidget> {
   late FilteredDateEnum _currentFilter;
-@override
+
+  @override
   void initState() {
-  _currentFilter = FilteredDateEnum.Week;
+    _currentFilter = FilteredDateEnum.Week;
     super.initState();
   }
+
   final List<ReceiptsEntity> receiptsList = [
     ReceiptsEntity(
       storeName: 'Пятерочка',
@@ -75,7 +77,6 @@ class _ReceiptsWidgetState extends State<ReceiptsWidget> {
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -96,58 +97,69 @@ class _ReceiptsWidgetState extends State<ReceiptsWidget> {
               },
             ),
           ),
-           SizedBox(height: 15),
-           Column(
-             children: receiptsList.map((path) {
-               return Padding(
-                 padding: const EdgeInsets.only(bottom: 12),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     const SizedBox(height: 6),
-                     TapAnimator(
-                       onTap: () {
-                         showCustomSheet(
-                           context: context,
-                           bgColor: AppColors.bgWhite,
-                           builder: (_) =>
-                               SizedBox(
-                                 height: 200,
-                                 child: Center(
-                                   child: Text(
-                                     'Открывается чек',
-                                     style: AppTypography.font18Regular.bold,
-                                   ),
-                                 ),
-                               ),
-                         );
-                       },
-                       child: Container(
-                         decoration: BoxDecoration(
-                           border: Border.all(color: AppColors.gray, width: 0.5),
-                           borderRadius: AppCorners.radius10,
-                         ),
-                         child: Padding(
-                           padding: const EdgeInsets.all(8.0),
-                           child: Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               ColumnTextWidget(title: path.storeName,
-                                   description:  path.address,
-                                   crossAxisAlignment: CrossAxisAlignment.start),
-                               ColumnTextWidget(title: path.amount.toString(),
-                                   description: '${path.purchaseDate.day}.${path.purchaseDate.month}.${path.purchaseDate.year}',
-                                   crossAxisAlignment: CrossAxisAlignment.end),
-                             ],
-                           ),
-                         ),
-                       ),
-                     ),
-                   ],
-                 ),
-               );
-             }).toList(),
-           )
+          SizedBox(height: 15),
+          Column(
+            children: receiptsList.map((path) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 6),
+                    TapAnimator(
+                      onTap: () {
+                        showCustomSheet(
+                          context: context,
+                          bgColor: AppColors.bgWhite,
+                          builder: (_) => SizedBox(
+                            height: 200,
+                            child: Center(
+                              child: Text(
+                                'Открывается чек',
+                                style: AppTypography.font18Regular.bold,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          border: Border.all(color: AppColors.white, width: 0.5),
+                          borderRadius: AppCorners.radius10,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0.1),
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset: Offset(1, 1), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ColumnTextWidget(
+                                  title: path.storeName,
+                                  description: path.address,
+                                  crossAxisAlignment: CrossAxisAlignment.start),
+                              ColumnTextWidget(
+                                  title: path.amount.toString(),
+                                  description:
+                                      '${path.purchaseDate.day}.${path.purchaseDate.month}.${path.purchaseDate.year}',
+                                  crossAxisAlignment: CrossAxisAlignment.end),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          )
         ],
       ),
     );

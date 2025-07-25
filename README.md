@@ -8,3 +8,5 @@ dart  run build_runner build --delete-conflicting-outputs
 Для генерации intl- **flutter pub run intl_utils:generate**
 
 dart run build_runner build --delete-conflicting-outputs
+
+firebase deploy --only hosting 

@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:nomix/core/resources/resources.dart';
@@ -10,6 +13,7 @@ import 'package:nomix/core/widgets/app_bottom_sheets.dart';
 import 'package:nomix/core/widgets/app_scaffold.dart';
 import 'package:nomix/core/widgets/list_title_container_widget.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
+import 'package:nomix/features/home_page/ui/state/home_page_bloc.dart';
 import 'package:nomix/features/home_page/ui/widgets/receipts_widget.dart';
 import 'package:nomix/features/home_page/ui/widgets/spending_chart_widget.dart';
 
@@ -18,73 +22,84 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      title: 'NOMIX AI',
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ListView(
-          children: [
-            TapAnimator(
-              onTap: () {
-                context.goNamed(RoutePath.debugMenuPath);
-              },
-              child: Container(
-                height: 130,
-                decoration: BoxDecoration(borderRadius: AppCorners.radius10, gradient: AppColors.gradient),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Добавить чек',
-                        style:
-                            AppTypography.font26Regular.copyWith(color: AppColors.white, fontWeight: FontWeight.w600),
+    return BlocBuilder<HomePageBloc, HomePageState>(
+      builder: (context, state) {
+        if (state is AuthUserDataTelegramState) {
+          return AppScaffold(
+            title: '${state.authUserEntity?.firstName} Id: ${state.authUserEntity?.id}',
+            photoUrl: state.authUserEntity?.photoUrl,
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListView(
+                children: [
+                  TapAnimator(
+                    onTap: () {
+                      context.goNamed(RoutePath.debugMenuPath);
+                    },
+                    child: Container(
+                      height: 130,
+                      decoration: BoxDecoration(borderRadius: AppCorners.radius10, gradient: AppColors.gradient),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Добавить чек',
+                              style: AppTypography.font26Regular
+                                  .copyWith(color: AppColors.white, fontWeight: FontWeight.w600),
+                            ),
+                            const Spacer(),
+                            const Image(image: AssetImage(ImageAssets.scann))
+                          ],
+                        ),
                       ),
-                      const Spacer(),
-                      const Image(image: AssetImage(ImageAssets.scann))
-                    ],
+                    ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 13.0),
+                    child: SpendingChart(),
+                  ),
+                  ListTileContainerWidget(
+                    onTap: () {
+                      context.goNamed(RoutePath.detailPageStatisticPath);
+                    },
+                    leadingPath: ImageAssets.statistic,
+                    title: 'Детальная статистика ',
+                  ),
+                  ListTileContainerWidget(
+                    onTap: () {
+                      showCustomSheet(
+                        context: context,
+                        title: 'Мои чеки',
+                        titleAlign: Alignment.topLeft,
+                        bgColor: AppColors.bgWhite,
+                        builder: (_) => SizedBox(height: 600, child: ReceiptsWidget()),
+                      );
+                    },
+                    leadingPath: ImageAssets.reciepts,
+                    title: 'Мои чеки',
+                  ),
+                  const ListTileContainerWidget(
+                    leadingPath: ImageAssets.techique,
+                    title: 'Техническая поддержка',
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: SpendingChart(),
-            ),
-            ListTileContainerWidget(
-              onTap: () {
-                context.pushNamed(RoutePath.detailPageStatisticPath);
-              },
-              leadingPath: ImageAssets.statistic,
-              title: 'Детальная статистика ',
-            ),
-              ListTileContainerWidget(
-              onTap: (){
-                showCustomSheet(
-                  context: context,
-                  title: 'Мои чеки',
-                 titleAlign: Alignment.topLeft,
-                  bgColor: AppColors.bgWhite,
-                  builder: (_) =>
-                      SizedBox(
-                          height: 600,
-                          child: ReceiptsWidget()),
-                );
-              },
-              leadingPath: ImageAssets.reciepts,
-              title: 'Мои чеки',
-            ),
-            const ListTileContainerWidget(
-              leadingPath: ImageAssets.techique,
-              title: 'Техническая поддержка',
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+        //TODO потом поменять на Shimmer
+        return Center(
+          child: Text(
+            'Что-то пошло не так,  или в этом виноват бэк ;)',
+            style: AppTypography.font15Regular,
+          ),
+        );
+      },
     );
   }
 }

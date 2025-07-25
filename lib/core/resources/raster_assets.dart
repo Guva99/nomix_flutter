@@ -15,5 +15,8 @@ class ImageAssets {
   static const String health = 'assets/images/health.png';
   static const String food = 'assets/images/food.png';
   static const String cloth = 'assets/images/cloth.png';
+  static const String icon = 'assets/images/icon.png';
+  static const String icon2 = 'assets/images/icon2.png';
+  static const String logo = 'assets/images/logo.png';
 
 }
