@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:nomix/features/home_page/data/data_source/services/home_page_api_service.dart';
+import 'package:nomix/features/home_page/data/model/auth_data_model.dart';
 import 'package:nomix/features/home_page/domain/repository/home_page_repository.dart';
 
 @LazySingleton(as: HomePageRepository)
@@ -9,9 +10,9 @@ class HomePageRepositoryImpl extends HomePageRepository {
   final HomePageApiService authServiceApi;
 
   @override
-  Future<void> addUserTelegram({
+  Future<AuthDataModel?> addUserTelegram({
     required int id,
-    required String token,
+    // required String token,
     String? firstName,
     String? lastName,
     String? username,
@@ -19,7 +20,7 @@ class HomePageRepositoryImpl extends HomePageRepository {
   }) async {
     return await authServiceApi.addUserTelegram(
       id: id,
-      token: token,
+      // token: token,
       firstName: firstName,
       lastName: lastName,
       username: username,

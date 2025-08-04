@@ -2,17 +2,15 @@ import 'package:nomix/features/home_page/domain/entity/auth_data_entity.dart';
 
 class AuthDataModel extends AuthDataEntity {
   const AuthDataModel({
-    required int id,
-    String? firstName,
-    String? lastName,
-    String? username,
+    int? id,
     String? photoUrl,
-    required String token,
+    String? message,
+    int? code,
+    String? token,
   }) : super(
           id: id,
-          firstName: firstName,
-          lastName: lastName,
-          username: username,
+          message: message,
+          code: code,
           photoUrl: photoUrl,
           token: token,
         );
@@ -25,9 +23,8 @@ class AuthDataModel extends AuthDataEntity {
 
     return AuthDataModel(
       id: (json['id'] as num).toInt(),
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      username: json['username'] as String?,
+      message: json['message'] as String?,
+      code: (json['code'] as num).toInt(),
       photoUrl: json['photoUrl'] as String?,
       token: json['token'] as String,
     );

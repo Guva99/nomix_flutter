@@ -20,7 +20,7 @@ class ResponseLogDetails extends StatelessWidget {
     required this.networkLogModel
   });
 
-  final NetworkLogModel networkLogModel;
+  final NetworkLogEntity networkLogModel;
 
   String prettyPrintJson(dynamic jsonString) {
     try {

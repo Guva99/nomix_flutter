@@ -14,7 +14,7 @@ import 'package:nomix/features/debug_menu/presentation/widgets/response_log_deta
 class NetworkLogDetails extends StatefulWidget {
   const NetworkLogDetails({super.key, required this.networkLogModel});
 
-  final NetworkLogModel networkLogModel;
+  final NetworkLogEntity networkLogModel;
 
   @override
   State<NetworkLogDetails> createState() => _NetworkLogDetailsState();

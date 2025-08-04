@@ -1,5 +1,5 @@
 mixin class HiveKeyConstants {
-  String authDataTokenModelHiveKey = 'accessToken';
+  String accessToken = 'accessToken';
 
   String authId = 'authId';
 }

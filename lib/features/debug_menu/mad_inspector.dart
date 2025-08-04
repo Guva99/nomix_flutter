@@ -19,12 +19,12 @@ enum StatusFilterEnum { informational, successful, redirection, clientError, ser
 enum MethodEnum { get, post, put, patch, delete, regularGetFlatApi }
 
 class MadInspectorNetworkModule {
-  static final List<NetworkLogModel> _networkResponses = <NetworkLogModel>[];
+  static final List<NetworkLogEntity> _networkResponses = <NetworkLogEntity>[];
 
-  static List<NetworkLogModel> get networkResponses => _networkResponses;
-  static final List<NetworkLogModel> _filteredNetworkResponses = <NetworkLogModel>[];
+  static List<NetworkLogEntity> get networkResponses => _networkResponses;
+  static final List<NetworkLogEntity> _filteredNetworkResponses = <NetworkLogEntity>[];
 
-  static List<NetworkLogModel> get filteredNetworkResponses => _filteredNetworkResponses;
+  static List<NetworkLogEntity> get filteredNetworkResponses => _filteredNetworkResponses;
   static final Set<StatusFilterEnum> _statusFilterMap = <StatusFilterEnum>{
     StatusFilterEnum.informational,
     StatusFilterEnum.successful,
@@ -53,55 +53,55 @@ class MadInspectorNetworkModule {
 
   static void updateFilteredElements() {
     _filteredNetworkResponses.clear();
-    _filteredNetworkResponses.addAll(List<NetworkLogModel>.from(_networkResponses));
+    _filteredNetworkResponses.addAll(List<NetworkLogEntity>.from(_networkResponses));
     if (_searchQuery.isNotEmpty) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => !(element.requestUrl?.toLowerCase() ?? '').contains(_searchQuery),
+        (NetworkLogEntity element) => !(element.requestUrl?.toLowerCase() ?? '').contains(_searchQuery),
       );
     }
     if (!_statusFilterMap.contains(StatusFilterEnum.informational)) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => (element.statusCode ?? 0) >= 100 && (element.statusCode ?? 0) <= 199,
+        (NetworkLogEntity element) => (element.statusCode ?? 0) >= 100 && (element.statusCode ?? 0) <= 199,
       );
     }
     if (!_statusFilterMap.contains(StatusFilterEnum.successful)) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => (element.statusCode ?? 0) >= 200 && (element.statusCode ?? 0) <= 299,
+        (NetworkLogEntity element) => (element.statusCode ?? 0) >= 200 && (element.statusCode ?? 0) <= 299,
       );
     }
     if (!_statusFilterMap.contains(StatusFilterEnum.redirection)) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => (element.statusCode ?? 0) >= 300 && (element.statusCode ?? 0) <= 399,
+        (NetworkLogEntity element) => (element.statusCode ?? 0) >= 300 && (element.statusCode ?? 0) <= 399,
       );
     }
     if (!_statusFilterMap.contains(StatusFilterEnum.clientError)) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => (element.statusCode ?? 0) >= 400 && (element.statusCode ?? 0) <= 499,
+        (NetworkLogEntity element) => (element.statusCode ?? 0) >= 400 && (element.statusCode ?? 0) <= 499,
       );
     }
     if (!_statusFilterMap.contains(StatusFilterEnum.serverError)) {
       _filteredNetworkResponses.removeWhere(
-        (NetworkLogModel element) => (element.statusCode ?? 0) >= 500 && (element.statusCode ?? 0) <= 599,
+        (NetworkLogEntity element) => (element.statusCode ?? 0) >= 500 && (element.statusCode ?? 0) <= 599,
       );
     }
 
     if (!_methodFilterMap.contains(MethodEnum.get)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) => element.httpMethod?.toLowerCase() == 'get');
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) => element.httpMethod?.toLowerCase() == 'get');
     }
     if (!_methodFilterMap.contains(MethodEnum.post)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) => element.httpMethod?.toLowerCase() == 'post');
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) => element.httpMethod?.toLowerCase() == 'post');
     }
     if (!_methodFilterMap.contains(MethodEnum.put)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) => element.httpMethod?.toLowerCase() == 'put');
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) => element.httpMethod?.toLowerCase() == 'put');
     }
     if (!_methodFilterMap.contains(MethodEnum.patch)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) => element.httpMethod?.toLowerCase() == 'patch');
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) => element.httpMethod?.toLowerCase() == 'patch');
     }
     if (!_methodFilterMap.contains(MethodEnum.delete)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) => element.httpMethod?.toLowerCase() == 'delete');
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) => element.httpMethod?.toLowerCase() == 'delete');
     }
     if (!_methodFilterMap.contains(MethodEnum.regularGetFlatApi)) {
-      _filteredNetworkResponses.removeWhere((NetworkLogModel element) {
+      _filteredNetworkResponses.removeWhere((NetworkLogEntity element) {
         final url = element.requestUrl ?? '';
         // Приводим к одному регистру, чтобы поиск был нечувствителен к регистру
         final lower = url.toLowerCase();
@@ -116,7 +116,7 @@ class MadInspectorNetworkModule {
 
   }
 
-  static void addElementToFiltered(NetworkLogModel elementToAdd) {
+  static void addElementToFiltered(NetworkLogEntity elementToAdd) {
     if (_searchQuery.isNotEmpty && elementToAdd.requestUrl?.toLowerCase().contains(_searchQuery.toLowerCase()) != true)
       return;
 
@@ -198,7 +198,7 @@ class MadInspectorDioInterceptor extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     try {
       if (err.response != null) {
-        final NetworkLogModel elementToAdd = NetworkLogModel(
+        final NetworkLogEntity elementToAdd = NetworkLogEntity(
           statusCode: err.response?.statusCode,
           httpMethod: err.response?.requestOptions.method,
           requestUrl: err.response?.requestOptions.uri.toString(),
@@ -219,7 +219,7 @@ class MadInspectorDioInterceptor extends Interceptor {
   @override
   void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     try {
-      final NetworkLogModel elementToAdd = NetworkLogModel(
+      final NetworkLogEntity elementToAdd = NetworkLogEntity(
         statusCode: response.statusCode,
         httpMethod: response.requestOptions.method,
         requestUrl: response.requestOptions.uri.toString(),

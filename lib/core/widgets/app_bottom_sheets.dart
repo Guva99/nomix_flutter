@@ -96,7 +96,7 @@ Future<T?> showCustomSheet<T>({
               Align(
                 alignment: titleAlign,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(28.0),
                   child: Row(
                     children: [
                       Text(

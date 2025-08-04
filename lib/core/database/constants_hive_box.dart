@@ -1,4 +1,4 @@
-abstract class HiveBoxConstants {
+          abstract class HiveBoxConstants {
   static const String  stringBox = 'accessToken';
   static const String  booleanBox = 'booleanBox';
   static const String  intBox = 'intBox';

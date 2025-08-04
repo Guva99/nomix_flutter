@@ -19,4 +19,13 @@ class ImageAssets {
   static const String icon2 = 'assets/images/icon2.png';
   static const String logo = 'assets/images/logo.png';
 
+  static const String otherEmoji = 'assets/images/other_emoji.png';
+  static const String foodEmoji = 'assets/images/food_emoji.png';
+  static const String healthEmoji = 'assets/images/health_emoji.png';
+  static const String restaurantEmoji = 'assets/images/restaurant_emoji.png';
+  static const String shoppingEmoji = 'assets/images/shopping_emoji.png';
+  static const String transportEmoji = 'assets/images/transport_emoji.png';
+
+
 }
+

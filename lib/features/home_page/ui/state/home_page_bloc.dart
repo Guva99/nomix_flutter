@@ -2,7 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:nomix/core/entity/auth_data_entity.dart';
+import 'package:nomix/core/repositories/auth_data_repository_impl.dart';
+import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/core/utils/telegram_utils.dart';
+import 'package:nomix/features/home_page/domain/entity/auth_data_entity.dart';
 import 'package:nomix/features/home_page/domain/usecases/usecase.dart';
 
 part 'home_page_event.dart';
@@ -21,9 +24,33 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     AuthGetDataEvent event,
     Emitter<HomePageState> emit,
   ) async {
-    final data = TelegramUtils.getUserInfo();
-    emit(AuthUserDataTelegramState(authUserEntity: data));
+    AuthDataEntity? data;
 
+    AuthDataRepositoryImpl authDataRepositoryImpl = AuthDataRepositoryImpl();
+    final AuthUserEntity? dataTelegram = TelegramUtils.getUserInfo();
+
+    if (dataTelegram != null) {
+      data = await homePageUseCase.addUserTelegram(
+        id: dataTelegram.id!,
+        firstName: dataTelegram.firstName,
+        lastName: dataTelegram.lastName,
+        username: dataTelegram.username,
+        photoUrl: dataTelegram.photoUrl,
+      );
+    }
+    authDataRepositoryImpl.saveTokenAccess(data?.token ?? '');
+    emit(
+      AuthUserDataTelegramState(
+        authUserEntity: AuthUserEntity(
+          firstName: dataTelegram?.firstName ?? '',
+          lastName: dataTelegram?.lastName ?? '',
+          username: dataTelegram?.username ?? '',
+          id: data?.id,
+          photoUrl: data?.photoUrl,
+        ),
+      ),
+    );
+    GetItUtils.logger.w('Из БЭКА ФОТО:${data?.photoUrl}');
     // await checkStatusAndGetNewDataSensor(generalResponseData: data, emit: emit, flatData: event.flatData);
   }
 }

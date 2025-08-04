@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:nomix/core/internal/sl.dart';
 import 'package:nomix/core/theme/app_corners.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
@@ -79,8 +80,16 @@ class _MadInspectorViewState extends State<DebugMenu> with TickerProviderStateMi
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          const Center(
-            child: Text('data'),
+          Center(
+            child: TalkerScreen(
+              theme: const TalkerScreenTheme(
+                logColors: {
+                  // TalkerLogType.verbose: Colors.yellow,
+                },
+              ),
+              appBarTitle: 'Nomix Logger',
+              talker: getIt<Talker>(),
+            ),
           ),
           const Center(child: NetworkLogs()),
           Center(

@@ -5,6 +5,10 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nomix/core/database/data/repositories/hivey.dart';
 import 'package:nomix/core/internal/sl.config.dart';
+import 'package:nomix/features/app/data/data_source/api/app_page_api.dart';
+import 'package:nomix/features/app/data/data_source/services/app_page_api_service.dart';
+import 'package:nomix/features/approve_receipts_page/data/source/api/approve_receipts_page_api.dart';
+import 'package:nomix/features/approve_receipts_page/data/source/services/approve_receipts_page_api_service.dart';
 import 'package:nomix/features/home_page/data/data_source/api/home_page_api.dart';
 import 'package:nomix/features/home_page/data/data_source/services/home_page_api_service.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
@@ -25,7 +29,7 @@ abstract class RegisterModule {
       BaseOptions(
         // baseUrl: 'https://wisecity.systems/api/execute/',
         // baseUrl: 'https://dev.wisecity.systems/api/execute/',
-        baseUrl:  'https://mixfom2025.fvds.ru/',
+        baseUrl: 'https://mixfom2025.fvds.ru/api/',
         connectTimeout: const Duration(milliseconds: 35000),
       ),
     );
@@ -84,7 +88,13 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  HomePageApi generalNewsApi() => HomePageApiService(dio);
+  HomePageApi homePageApi() => HomePageApiService(dio);
+
+  @lazySingleton
+  AppPageApi appPageApi() => AppPageApiService(dio);
+
+  @lazySingleton
+  ApproveReceiptsApi generalNewsApi() => ApproveReceiptsApiService(dio);
 }
 
 //

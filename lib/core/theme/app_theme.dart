@@ -53,6 +53,8 @@ abstract class AppColors {
   static const Color gray100 = Color(0xFFF4F4F4);
    static const Color primaryBlue = Color(0xFF3776F0);
   static const Color accentColor = Color(0xFF5A3B9E);
+  static const Color accentLightColor = Color(0xFF7B46BF);
+  static const Color accentLightColor2 = Color(0xE8F2E9FF);
   static const Color primaryBlueLight = Color(0xFF709AEC);
   static const Color orangeFood = Color(0xFFF7A963);
   static const Color pinkAccent = Color(0xFFFC7AD7);
@@ -67,6 +69,17 @@ abstract class AppColors {
       Color(0xFF42A5F5),
       Color(0xFF478DE0),
       Color(0xFF5C6BC0),
+    ],
+  );
+
+
+  static const Gradient gradientPrimaryButton = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+      accentLightColor,
+      accentColor,
+      accentLightColor,
     ],
   );
 

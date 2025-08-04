@@ -7,10 +7,12 @@ import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 // if (Platform.isIos || Platform.isAndroid) 'package:telegram_web_app/telegram_web_app.dart'
 
+late SharedPreferences prefs;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();

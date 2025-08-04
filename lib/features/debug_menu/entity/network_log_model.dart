@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class NetworkLogModel extends Equatable {
+class NetworkLogEntity extends Equatable {
 
-  const NetworkLogModel({
+  const NetworkLogEntity({
     this.statusCode,
     this.httpMethod,
     this.requestUrl,

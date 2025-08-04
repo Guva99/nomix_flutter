@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nomix/core/theme/typography.dart';
+import 'package:nomix/core/utils/telegram_utils.dart';
 import 'package:nomix/core/widgets/canvas/romb_clipper.dart';
 import 'package:nomix/core/widgets/weavy_shimmer_text.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
@@ -51,7 +52,7 @@ class _SplashRevealWidgetState extends State<SplashRevealWidget> with SingleTick
 
   Future<void> _startAnimation() async {
     // 1) Запускаем вибрацию в фоне, но не ждём её окончания
-    _startVibration();
+    TelegramUtils.startVibration();
 
     // 2) Сразу пускаем анимацию
     await _controller.forward();
@@ -60,28 +61,7 @@ class _SplashRevealWidgetState extends State<SplashRevealWidget> with SingleTick
     widget.onAnimationComplete?.call();
   }
 
-  void _startVibration() {
-    final end = DateTime.now().add(const Duration(milliseconds: 800));
-    final useTelegram = tg.TelegramWebApp.instance.isSupported;
-    final telegramHaptic = tg.HapticFeedback.instance;
 
-    // без await, чтобы не блокировать анимацию
-    () async {
-      while (DateTime.now().isBefore(end)) {
-        if (useTelegram) {
-          telegramHaptic.impactOccurred(tg.HapticFeedbackImpact.light);
-          telegramHaptic.impactOccurred(tg.HapticFeedbackImpact.medium);
-          telegramHaptic.impactOccurred(tg.HapticFeedbackImpact.heavy);
-        } else {
-          // Flutter-фоллбэк
-          await SystemChannels.platform.invokeMethod<void>(
-            'HapticFeedback.mediumImpact',
-          );
-        }
-        await Future.delayed(const Duration(milliseconds: 200));
-      }
-    }();
-  }
 
   void _resetAnimation() {
     _controller.reset();

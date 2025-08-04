@@ -7,10 +7,29 @@ abstract class BusinessUtils {
 
 
   ///Static AppVersion
-  static const appVersion = 'V1.0.0+11';
+  static const appVersion = 'V1.0.0+14';
 
 
 
+
+  static String iconForCategory(String category) {
+     switch (category.toLowerCase()) {
+      case 'продукты':
+        return '🍔';
+      case 'заведение':
+        return '🍽️';
+      case 'здоровье':
+        return '💊';
+      case 'транспорт':
+        return '🚘';
+      case 'прочее':
+        return '🧩';
+      case 'шопинг':
+        return '🛍️';
+      default:
+        return '';
+    }
+  }
 
 
 

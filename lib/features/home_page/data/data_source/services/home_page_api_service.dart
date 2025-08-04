@@ -4,31 +4,35 @@ import 'package:nomix/features/home_page/data/data_source/api/home_page_api.dart
 import 'package:nomix/features/home_page/data/model/auth_data_model.dart';
 
 @lazySingleton
-class HomePageApiService  implements HomePageApi{
+class HomePageApiService implements HomePageApi {
   final Dio dio;
 
   HomePageApiService(this.dio);
 
   @override
-  Future<void> addUserTelegram({
+  Future<AuthDataModel?> addUserTelegram({
     required int id,
-    required String token,
+    // required String token,
     String? firstName,
     String? lastName,
     String? username,
     String? photoUrl,
   }) async {
-
-       await dio.post<Map<String, dynamic>>(
-        'data/addUserTelegram',
-        data: {
-          "firstName": firstName,
-          "lastName": lastName,
-          "username": username,
-          "photoUrl": photoUrl,
-          "token": token,
-        },
-      );
-
+    final response = await dio.post<Map<String, dynamic>>(
+      'telegram/login',
+      data: {
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "photoUrl": photoUrl,
+        "id": id,
+        // "token": token,
+      },
+    );
+    if (response.statusCode == 200 && response.data != null) {
+      return AuthDataModel.fromJson(response.data);
+    } else {
+      return null;
+    }
   }
 }

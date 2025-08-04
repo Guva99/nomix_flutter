@@ -17,7 +17,7 @@ class NetworkLogListItem extends StatelessWidget {
     required this.networkLogModel
   });
 
-  final NetworkLogModel networkLogModel;
+  final NetworkLogEntity networkLogModel;
 
   Icon? getIconByStatusCode(int statusCode) {
 

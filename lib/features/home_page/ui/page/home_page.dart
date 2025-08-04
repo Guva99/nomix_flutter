@@ -34,7 +34,7 @@ class MainPage extends StatelessWidget {
                 children: [
                   TapAnimator(
                     onTap: () {
-                      context.goNamed(RoutePath.debugMenuPath);
+                      context.goNamed(RoutePath.approveReceipts);
                     },
                     child: Container(
                       height: 130,

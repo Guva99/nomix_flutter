@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nomix/core/resources/resources.dart';
 import 'package:nomix/core/theme/app_theme.dart';
 import 'package:nomix/core/theme/typography.dart';
 import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/background-beam/background_beam_demo.dart';
+import 'package:nomix/features/app/routing/route_path.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 class AppScaffold extends StatefulWidget {
@@ -14,7 +16,7 @@ class AppScaffold extends StatefulWidget {
   final Widget body;
   final Widget? leadingWidget;
 
-  const AppScaffold({super.key, required this.title,  this.photoUrl, this.leadingWidget, required this.body});
+  const AppScaffold({super.key, required this.title, this.photoUrl, this.leadingWidget, required this.body});
 
   @override
   State<AppScaffold> createState() => _AppScaffoldState();
@@ -36,7 +38,9 @@ class _AppScaffoldState extends State<AppScaffold> {
             ),
             child: widget.leadingWidget ??
                 TapAnimator(
-                  onTap: () {},
+                  onTap: () {
+                    context.goNamed(RoutePath.debugMenuPath);
+                  },
                   child: SvgPicture.asset(
                     VectorAssets.notif,
                     width: 24,
@@ -80,34 +84,13 @@ class _AppScaffoldState extends State<AppScaffold> {
   }
 
   Widget _buildAvatar(String? photoUrl) {
-    // Нет URL — показываем фолбэк
     if (photoUrl == null || photoUrl.isEmpty) {
-      return _placeholder();
+      return _placeholder(); // твоя заглушка
     }
 
-    // SVG?
-    if (photoUrl.toLowerCase().endsWith('.svg')) {
-      final url = _proxySvgUrl(photoUrl);
-      return CircleAvatar(
-        radius: 20,
-        backgroundColor: Colors.grey.shade200,
-        child: ClipOval(
-          child: SvgPicture.network(
-            url,
-            width: 40,
-            height: 40,
-            // пока SVG грузится:
-            placeholderBuilder: (_) => _placeholder(),
-            // при любой ошибке — возвращаем placeholder
-            errorBuilder: (_, __, ___) => _placeholder(),
-          ),
-        ),
-      );
-    }
-
-    // Растровая картинка (.jpg/.png)
     return CircleAvatar(
       radius: 20,
+      backgroundColor: Colors.transparent,
       backgroundImage: NetworkImage(photoUrl),
       onBackgroundImageError: (_, __) => setState(() => photoUrl = null),
     );
