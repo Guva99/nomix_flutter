@@ -8,7 +8,6 @@ class ReceiptItemEntity extends Equatable {
   final int? categoryId;
   final String? subcategory;
   final int? subcategoryId;
-  // … другие поля …
 
   const ReceiptItemEntity({
     this.id,
@@ -30,22 +29,19 @@ class ReceiptItemEntity extends Equatable {
     int? subcategoryId,
   }) {
     return ReceiptItemEntity(
-      id:             id           ?? this.id,
-      name:           name         ?? this.name,
-      price:          price        ?? this.price,
-      category:       category     ?? this.category,
-      categoryId:     categoryId   ?? this.categoryId,
-      subcategory:    subcategory  ?? this.subcategory,
-      subcategoryId:  subcategoryId?? this.subcategoryId,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      category: category ?? this.category,
+      categoryId: categoryId ?? this.categoryId,
+      subcategory: subcategory ?? this.subcategory,
+      subcategoryId: subcategoryId ?? this.subcategoryId,
     );
   }
 
   @override
-  List<Object?> get props => [
-    id, name, price, category, categoryId, subcategory, subcategoryId
-  ];
+  List<Object?> get props => [id, name, price, category, categoryId, subcategory, subcategoryId];
 }
-
 
 /// Сущность чека
 class ReceiptEntity extends Equatable {

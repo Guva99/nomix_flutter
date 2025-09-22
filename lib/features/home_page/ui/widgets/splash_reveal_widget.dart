@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nomix/core/theme/typography.dart';
-import 'package:nomix/core/utils/telegram_utils.dart';
+import 'package:nomix/core/service/telegram_service/telegram_utils.dart';
 import 'package:nomix/core/widgets/canvas/romb_clipper.dart';
 import 'package:nomix/core/widgets/weavy_shimmer_text.dart';
-import 'package:telegram_web_app/telegram_web_app.dart';
-import 'package:vibration/vibration.dart';
-import 'package:telegram_web_app/telegram_web_app.dart' as tg;  // псевдоним tg
 
 class SplashRevealWidget extends StatefulWidget {
   final Widget child;

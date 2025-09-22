@@ -135,6 +135,7 @@ Future<T?> showCustomSheet<T>({
   );
 }
 
+
 Future<T?> _showBaseSheet<T>({
   required BuildContext context,
   required WidgetBuilder builder,
@@ -178,8 +179,8 @@ Future<T?> _showBottomSheet<T>({
 }) {
   return showModalBottomSheet<T>(
     context: context,
-    backgroundColor: Colors.transparent,
-    barrierColor: AppColors.white.withOpacity(0.6),
+    backgroundColor: AppColors.accentColor,
+    barrierColor: AppColors.accentColor.withOpacity(0.3),
     isDismissible: isDismissible,
     enableDrag: enableDrag,
     isScrollControlled: true,

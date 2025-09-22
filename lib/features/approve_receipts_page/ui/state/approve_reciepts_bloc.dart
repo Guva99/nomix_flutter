@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:nomix/core/entity/auth_data_entity.dart';
-import 'package:nomix/core/utils/telegram_utils.dart';
+import 'package:nomix/core/service/telegram_service/telegram_utils.dart';
 import 'package:nomix/features/approve_receipts_page/domain/entity/reciepts_item_entity.dart';
 import 'package:nomix/features/approve_receipts_page/domain/usecases/usecase.dart';
 

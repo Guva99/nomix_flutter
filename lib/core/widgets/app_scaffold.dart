@@ -8,7 +8,6 @@ import 'package:nomix/core/utils/get_it_utils.dart';
 import 'package:nomix/core/widgets/animate_click.dart';
 import 'package:nomix/core/widgets/background-beam/background_beam_demo.dart';
 import 'package:nomix/features/app/routing/route_path.dart';
-import 'package:telegram_web_app/telegram_web_app.dart';
 
 class AppScaffold extends StatefulWidget {
   final String title;

@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:nomix/core/entity/auth_data_entity.dart';
 import 'package:nomix/core/repositories/auth_data_repository_impl.dart';
 import 'package:nomix/core/utils/get_it_utils.dart';
-import 'package:nomix/core/utils/telegram_utils.dart';
+import 'package:nomix/core/service/telegram_service/telegram_utils.dart';
 import 'package:nomix/features/app/domain/usecases/usecase.dart';
 import 'package:nomix/features/home_page/domain/entity/auth_data_entity.dart';
 import 'package:nomix/features/home_page/domain/usecases/usecase.dart';

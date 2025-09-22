@@ -13,7 +13,7 @@ class ApproveReceiptsApiService implements ApproveReceiptsApi {
 
   @override
   Future<ReceiptModel?> getlastCheckModel(int userId) async {
-    return  ReceiptModel.fromJson(jsonDecode(rawJson));
+    return ReceiptModel.fromJson(jsonDecode(rawJson));
 
     final response = await dio.get(
       'api/bot/edit-check?$userId',
@@ -43,22 +43,6 @@ const rawJson = '''
       "category_id": 2,
       "subcategory": "Другие",
       "subcategory_id": 25
-    },
-    {
-      "name": "К.ПР.КОНФ.БИС.ВК.Т/Кр.6/Р.Б. 0.258кг",
-      "price": 98.04,
-      "category": "Продукты",
-      "category_id": 1,
-      "subcategory": "Другие",
-      "subcategory_id": 15
-    },
-    {
-      "name": "Коньяк FATHERS OLD BAR 0.1л",
-      "price": 169.99,
-      "category": "Продукты",
-      "category_id": 1,
-      "subcategory": "алкоголь",
-      "subcategory_id": 11
     },
     {
       "name": "Коньяк СТАР. ТРЭВ. 0.25л",

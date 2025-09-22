@@ -9,29 +9,28 @@ import 'package:nomix/features/app/bloc_providers.dart';
 import 'package:nomix/features/app/routing/path_files.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-import 'package:telegram_web_app/telegram_web_app.dart';
-// if (Platform.isIos || Platform.isAndroid) 'package:telegram_web_app/telegram_web_app.dart'
 
 late SharedPreferences prefs;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
 
-  try {
-    if (TelegramWebApp.instance.isSupported) {
-      final webApp = TelegramWebApp.instance;
-
-      webApp.ready();
-      webApp.disableVerticalSwipes();
-      webApp.expand();
-    }
-  } catch (e) {
-    print("Error happened in Flutter while loading Telegram $e");
-    // add delay for 'Telegram seldom not loading' bug
-    await Future.delayed(const Duration(milliseconds: 200));
-    main();
-    return;
-  }
+  // try {
+  //   if (TelegramWebApp.instance.isSupported) {
+  //     final webApp = TelegramWebApp.instance;
+  //
+  //     webApp.ready();
+  //     webApp.disableVerticalSwipes();
+  //     webApp.expand();
+  //   }
+  // } catch (e) {
+  //   print("Error happened in Flutter while loading Telegram $e");
+  //   // add delay for 'Telegram seldom not loading' bug
+  //   await Future.delayed(const Duration(milliseconds: 200));
+  //   main();
+  //   return;
+  // }
 
   FlutterError.onError = (details) {
     print("Flutter error happened: $details");

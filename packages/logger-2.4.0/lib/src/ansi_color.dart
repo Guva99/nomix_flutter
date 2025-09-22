@@ -1,6 +1,6 @@
 /// This class handles colorizing of terminal output.
 class AnsiColor {
-  /// ANSI Control Sequence Introducer, signals the terminal for new settings.
+  /// ANSI Control Sequence Introducer, signals the terminal for new edit_product_widgets.
   static const ansiEsc = '\x1B[';
 
   /// Reset all colors and options for current SGRs to terminal defaults.
