@@ -27,8 +27,6 @@ abstract class RegisterModule {
   Dio get dio {
     Dio dio = Dio(
       BaseOptions(
-        // baseUrl: 'https://wisecity.systems/api/execute/',
-        // baseUrl: 'https://dev.wisecity.systems/api/execute/',
         baseUrl: 'https://mixfom2025.fvds.ru/api/',
         connectTimeout: const Duration(milliseconds: 35000),
       ),
