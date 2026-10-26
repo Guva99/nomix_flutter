@@ -1,96 +1,98 @@
-# Nomix 📸 — учёт расходов по фото чека
+# Nomix 📸 — expense tracking from a photo of a receipt
 
-**Nomix** превращает бумажный чек в понятную статистику расходов. Пользователь отправляет фото чека в Telegram, нейросеть распознаёт позиции и цены, а приложение показывает, сколько и на что ушло денег за месяц.
+**English** · [Русский](README.ru.md)
 
-Это Flutter-клиент Nomix. Он работает как **Telegram Mini App** прямо внутри Telegram и собирается как мобильное приложение под iOS и Android из той же кодовой базы.
+**Nomix** turns a paper receipt into clear spending stats. You send a photo of a receipt in Telegram, an LLM reads the items and prices, and the app shows how much you spent and on what each month.
 
-> Бэкенд: [nomix-backend](https://github.com/Guva99/nomix-backend) — FastAPI, PostgreSQL, Telegram-бот, распознавание чеков через Google Gemini.
+This is the Flutter client of Nomix. It runs as a **Telegram Mini App** right inside Telegram, and the same codebase builds as a mobile app for iOS and Android.
+
+> Backend: [nomix-backend](https://github.com/Guva99/nomix-backend) — FastAPI, PostgreSQL, a Telegram bot, and receipt recognition with Google Gemini.
 
 ---
 
-## Как это работает
+## How it works
 
 ```mermaid
 flowchart LR
-    U[Пользователь] -->|фото чека| B[Telegram-бот]
-    B --> S[Бэкенд Nomix]
-    S -->|распознавание| G[Google Gemini]
+    U[User] -->|receipt photo| B[Telegram bot]
+    B --> S[Nomix backend]
+    S -->|recognition| G[Google Gemini]
     G --> S
-    S -->|черновик чека| M[Mini App на Flutter]
-    M -->|проверка и правка| S
-    S -->|статистика| M
+    S -->|draft receipt| M[Flutter Mini App]
+    M -->|review and edit| S
+    S -->|stats| M
 ```
 
-1. Пользователь фотографирует чек и отправляет его Telegram-боту.
-2. Бэкенд отправляет фото в Gemini и приводит ответ к строгой схеме: позиции, количество, цены, итог.
-3. Распознанный чек сохраняется как черновик и открывается в Mini App.
-4. Пользователь проверяет позиции, при необходимости правит название, количество или цену и сохраняет чек.
-5. Приложение строит статистику расходов по категориям, товарам и месяцам.
+1. The user takes a photo of a receipt and sends it to the Telegram bot.
+2. The backend sends the photo to Gemini and normalizes the response into a strict schema: items, quantities, prices, total.
+3. The recognized receipt is saved as a draft and opens in the Mini App.
+4. The user reviews the items, fixes a name, quantity or price if needed, and saves the receipt.
+5. The app builds spending stats by category, product and month.
 
-## Связка с Telegram
+## Telegram integration
 
-- **Mini App.** Приложение собирается во Flutter Web и открывается внутри Telegram. В `web/index.html` подключён официальный `telegram-web-app.js`, с ним работает пакет `telegram_web_app`.
-- **Вход без регистрации.** Данные пользователя берутся из `initData` Telegram и отправляются на сервер (`/telegram/login`), в ответ приходит токен. Логин и пароль не нужны.
-- **Бот как точка входа.** Чеки удобно отправлять прямо в чат с ботом, а смотреть и править результат — в Mini App.
-- **Нативные ощущения.** Тактильный отклик (haptic feedback) через Telegram Web App API: лёгкий, средний и сильный в зависимости от действия.
+- **Mini App.** The app is built with Flutter Web and opens inside Telegram. `web/index.html` loads the official `telegram-web-app.js`, used through the `telegram_web_app` package.
+- **No sign-up.** User data comes from Telegram's `initData` and is sent to the server (`/telegram/login`), which returns a token. No login or password needed.
+- **The bot as the entry point.** Receipts go straight into the chat with the bot; viewing and editing the result happens in the Mini App.
+- **Native feel.** Haptic feedback through the Telegram Web App API: light, medium or heavy depending on the action.
 
-## Возможности
+## Features
 
-- 📥 Проверка распознанного чека и правка каждой позиции перед сохранением
-- 🏠 Главный экран с последними чеками и графиком расходов
-- 📊 Детальная статистика по категориям и товарам за месяц
-- 🔐 Авторизация через Telegram
-- 🛠 Отладочное меню: логи приложения и сетевых запросов (Talker)
+- 📥 Review a recognized receipt and edit every item before saving
+- 🏠 Home screen with recent receipts and a spending chart
+- 📊 Detailed monthly stats by category and product
+- 🔐 Sign-in with Telegram
+- 🛠 Debug menu with app and network logs (Talker)
 
-## Архитектура
+## Architecture
 
-Проект построен по **feature-first Clean Architecture**: каждая фича — отдельный модуль со своими слоями, зависимости направлены внутрь, к домену. UI не обращается к API напрямую: только через use cases и интерфейсы репозиториев.
+The project follows **feature-first Clean Architecture**: every feature is a separate module with its own layers, and dependencies point inward, toward the domain. The UI never calls the API directly, only through use cases and repository interfaces.
 
 ```mermaid
 flowchart TB
-    UI["UI<br/>страницы, виджеты, BLoC"] --> D["Domain<br/>сущности, use cases,<br/>интерфейсы репозиториев"]
-    DA["Data<br/>API, модели,<br/>реализации репозиториев"] --> D
+    UI["UI<br/>pages, widgets, BLoC"] --> D["Domain<br/>entities, use cases,<br/>repository interfaces"]
+    DA["Data<br/>API, models,<br/>repository implementations"] --> D
 ```
 
 ```
 lib/
-├── core/                       # общее для всех фич
-│   ├── internal/               # DI, настройка Dio
+├── core/                       # shared by all features
+│   ├── internal/               # DI, Dio setup
 │   ├── database/               # Hive
 │   ├── service/telegram_service/
 │   ├── theme/  widgets/  utils/
 ├── features/
-│   ├── app/                    # запуск, роутинг, авторизация
-│   ├── home_page/              # главный экран и график расходов
-│   ├── approve_receipts_page/  # проверка и правка чека
-│   ├── detail_statistic_page/  # статистика по категориям
-│   └── debug_menu/             # логи и сетевые запросы
+│   ├── app/                    # startup, routing, auth
+│   ├── home_page/              # home screen and spending chart
+│   ├── approve_receipts_page/  # receipt review and editing
+│   ├── detail_statistic_page/  # stats by category
+│   └── debug_menu/             # app and network logs
 └── main.dart
 ```
 
-Каждая фича внутри:
+Inside each feature:
 
 ```
 feature/
-├── data/     # источники данных (API), модели, реализация репозитория
-├── domain/   # сущности, интерфейс репозитория, use cases
-└── ui/       # страницы, BLoC, виджеты
+├── data/     # data sources (API), models, repository implementation
+├── domain/   # entities, repository interface, use cases
+└── ui/       # pages, BLoC, widgets
 ```
 
-## Стек
+## Tech stack
 
-| Задача | Решение |
+| Area | Tools |
 |---|---|
-| Состояние | `flutter_bloc`, `equatable` |
-| Навигация | `go_router` |
-| Внедрение зависимостей | `get_it` + `injectable` |
-| Сеть | `dio` с интерсепторами для заголовков и логирования |
-| Локальное хранилище | `hive`, `shared_preferences` |
-| Графики и анимации | `fl_chart`, `lottie`, `shimmer`, `flutter_staggered_animations` |
-| Логирование | `talker`, `talker_dio_logger` |
+| State management | `flutter_bloc`, `equatable` |
+| Navigation | `go_router` |
+| Dependency injection | `get_it` + `injectable` |
+| Networking | `dio` with interceptors for headers and logging |
+| Local storage | `hive`, `shared_preferences` |
+| Charts and animation | `fl_chart`, `lottie`, `shimmer`, `flutter_staggered_animations` |
+| Logging | `talker`, `talker_dio_logger` |
 | Telegram | `telegram_web_app` |
 
-## Запуск
+## Getting started
 
 ```bash
 flutter pub get
@@ -98,7 +100,7 @@ dart run build_runner build --delete-conflicting-outputs
 flutter run -d chrome
 ```
 
-## Сборка
+## Builds
 
 ```bash
 # Telegram Mini App
@@ -106,8 +108,8 @@ flutter build web --release
 firebase deploy --only hosting
 
 # Android
-flutter build apk --release      # тестовая сборка
-flutter build appbundle          # для Google Play
+flutter build apk --release      # test build
+flutter build appbundle          # Google Play
 
 # iOS
 flutter build ipa
